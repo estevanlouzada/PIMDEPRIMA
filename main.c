@@ -2,6 +2,7 @@
 #include "ProfissionalSaude.h"
 #include <stdbool.h>
 #include "fileManager.h"
+#include <string.h>
 
 enum
 {
@@ -9,6 +10,16 @@ enum
     TelaLogado = 2,
     Sair = 3
 } StatesTela;
+
+void TelaCadastroDeNovoLogin()
+{
+
+}
+
+void VerificacaoDeSenha()
+{
+
+}
 
 void TelaMenuInicial1()
 {
@@ -38,7 +49,7 @@ bool ConfirmacaoParaRegistroDeCadastro()
     printf("Login não cadastrado . \n");
     printf("Deseja cadastrar o login ? \n");
     printf("Se sim S não N : ");
-    char escolha[1];
+    char escolha;
     scanf("%s", escolha);
 
     if (escolha == 'S')
@@ -129,10 +140,11 @@ int UsarioLogado()
 {
     // TODO: Menu de uma usuario logado
     printf("1 - Cadastrar novo paciente . \n");
-    printf("Se sim S se não N  ou Exit para sair .. \n");
+    printf("Se sim S se não N  ou Exit para s .. \n");
     
-    char opcao[10];
-    switch (opcao[10])
+    char opcao;
+
+    switch (opcao)
     {
     case 'S':
         /* TODO: cadastro de novo paciente */
@@ -141,7 +153,8 @@ int UsarioLogado()
     case 'N':
         /* code */
         break;
-    case 'sair':
+
+    case 's':
 
         break;
     default:
@@ -164,7 +177,7 @@ int main(int argc, char *argv[])
         switch (StatesTela)
         {
         case TelaMenuInicial:
-            StatesTela = MenuInicial1();
+            StatesTela = MenuInicial1(Ponteiro);
             break;
 
         case TelaLogado:
