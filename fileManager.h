@@ -17,10 +17,17 @@ struct fileManage
 
 void OpenFileAndRead(FILE * fptr)
 {
-   fptr = fopen("PathFile", "r");
+   fptr = fopen("Arquivo.txt", "r");
 
    if(fptr == NULL)
    printf("Não foi possivel abrir o arquivo");
+
+   printf("Conteudo do arquivo ");
+    char ch;
+   while((ch = fgetc(fptr)) != EOF)
+      printf("%c", ch);
+
+   fclose(fptr);
 
 
 }

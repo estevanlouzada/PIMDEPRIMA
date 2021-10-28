@@ -18,20 +18,21 @@ void TelaCadastroDeNovoLogin()
 
 void VerificacaoDeSenha()
 {
-
+   
 }
 
 void TelaMenuInicial1()
 {
-    printf("MENU DE ATENDIMENTO\n ");
-    printf("Faça seu login de usuario \n");
+    printf("MENU DE ATENDIMENTO \n ");
+    printf("Faca seu login de usuario \n");
     char login[255];
     scanf("%s", login);
 }
 
-bool VerificaExistenciaDecadastro()
+bool VerificaExistenciaDecadastro(FILE * f)
 {
     // TODO : Verifica se existe o txt e se existir procura o login utilizado
+    OpenFileAndRead(f);
     return true;
 }
 
@@ -68,7 +69,7 @@ int MenuInicial1(FILE * p )
     // Menu Inicial - 1
     TelaMenuInicial1();
 
-    if (VerificaExistenciaDecadastro())
+    if (VerificaExistenciaDecadastro(p))
     {
         VerificacaoDeSenha();
         return TelaLogado;
@@ -181,7 +182,8 @@ int main(int argc, char *argv[])
             break;
 
         case TelaLogado:
-
+            // por enquanto encerra aqui ... 
+            exit = true;
             break;
 
         case Sair:
