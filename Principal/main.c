@@ -147,19 +147,19 @@ int UsarioLogado()
 
     switch (opcao)
     {
-    case 'S':
-        /* TODO: cadastro de novo paciente */
-        cadastroDeNovoPaciente();
-        break;
-    case 'N':
-        /* code */
-        break;
+        case 'S':
+            /* TODO: cadastro de novo paciente */
+            cadastroDeNovoPaciente();
+            break;
+        case 'N':
+            /* code */
+            break;
 
-    case 's':
+        case 's':
 
-        break;
-    default:
-        break;
+            break;
+        default:
+            break;
     }
 }
 
@@ -177,21 +177,21 @@ int main(int argc, char *argv[])
 
         switch (StatesTela)
         {
-        case TelaMenuInicial:
-            StatesTela = MenuInicial1(Ponteiro);
-            break;
+            case TelaMenuInicial:
+                StatesTela = MenuInicial1(Ponteiro);
+                break;
 
-        case TelaLogado:
-            // por enquanto encerra aqui ... 
-            exit = true;
-            break;
+            case TelaLogado:
+                // por enquanto encerra aqui ... 
+                exit = true;
+                break;
 
-        case Sair:
-            exit = true;
-            break;
+            case Sair:
+                exit = true;
+                break;
 
-        default:
-            break;
+            default:
+                break;
         }
 
     } while (exit == false);

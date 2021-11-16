@@ -46,21 +46,21 @@ int size(char *ptr)
    return count;
 }
 
-char *get_string(char *ptr, int size)
-{
+// char *get_string(char *ptr, int size)
+// {
+//    int offset = 0;
 
-   int offset = 0;
+//    char Aux[size];
 
-   char Aux[size];
+//    for (size_t i = 0; i < size; i++)
+//    {
+//       char * ptr_caracter = *(ptr + offset);
+//       Aux[i] = ptr_caracter;
+//       ++offset;
+//    }
 
-   for (size_t i = 0; i < size; i++)
-   {
-      Aux[i] = *(ptr + offset);
-      ++offset;
-   }
-
-   return Aux;
-}
+//   return 
+// }
 
 char *string_AddChar(char n, char *str)
 {
@@ -69,11 +69,14 @@ char *string_AddChar(char n, char *str)
       return str;
 
    int tamanho = size(str);
+   /*
    char Aux[] = get_string(str, tamanho);
    char *new_char = malloc(++tamanho);
 
    free(str);
 
+   
+   
    for (size_t i = 0; i < ++tamanho; i++)
    {
       new_char = Aux[i];
@@ -81,71 +84,59 @@ char *string_AddChar(char n, char *str)
    new_char[++tamanho] = '\0';
 
    return new_char;
+   */
 }
 
 void OpenFileAndRead(FILE *fptr)
 {
+   char *word;
+   char **dictionary;
+
+   word = (char *)malloc(sizeof(char));
+   dictionary = (char **)malloc(sizeof(char *));
+
+   int idx = 0;    // index of word
+    int widx = 0;   // index of char in word
+
    fptr = fopen("Arquivo.txt", "r");
 
    if (fptr == NULL)
+   {
       printf("Não foi possivel abrir o arquivo");
-
-   printf("Conteudo do arquivo ");
+   }
+      
    char ch;
 
-   char text[500][100];
-
-   int row = 0;
-   int columns = 0;
-
-   int usuario_struct = 0;
-
-   char *str;
-   int escrit = 0;
-
-   struct usuario_log user;
-
-   while ((ch = fgetc(fptr)) != EOF)
+   while ((ch = getc(fptr)) != EOF)
    {
-      if (ch == '\n')
-      {
-         row = 0;
-         text[columns++][row];
-      }
-      else if (ch == ';')
-      {
-         switch (usuario_struct)
-         {
+        if(ch == ';')
+        {
+            widx++;
+            word = (char *)realloc(word, sizeof(char) * (widx));
+            *(word + widx-1) = '\0'; // add no final \0
+            idx++;
+            dictionary = (char **)realloc(dictionary, sizeof(char *) * (idx));
+            *(dictionary+idx-1) = word; // add word 
+            widx = 0;
+            word = NULL;
 
-            case (int)NOME:
-               usuario_struct++;
-               unsigned int len = strlen(str);
-               strncpy(&user.Nome, str, len);
-               break;
+        } else{
 
-            case (int)SENHA:
-               usuario_struct++;
-               unsigned int len3 = strlen(str);
-               strncpy(&user.Senha, str, len3);
-               break;
-
-            default:
-               usuario_struct = 0;
-               break;
-         }
-
-         str = NULL;
-      }
-      else
-      {
-         text[columns][row] = ch;
-         str[escrit++] = ch;
-      }
-
-      printf("%c", ch);
-
-      text[columns][row++];
+            widx++;
+            word = (char *)realloc(word, sizeof(char) * (widx));
+            *(word + widx-1) = (char)ch;
+        }
    }
+
+    // print words
+    int n = idx;
+    for(int i = 0; i < n; i++){
+        printf("%d - %s \n", i, *(dictionary+i));
+        if(i % 2 == 0)
+        {
+           // comparar a string com o nome 
+        }
+    }
 
    fclose(fptr);
 }
