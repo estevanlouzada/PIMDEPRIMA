@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <errno.h>
 #include <stdint.h>
+#include<string.h>
 
 void recebe_ptr(char **ptr_param, char *ptr_param2)
 {
@@ -42,8 +43,8 @@ int main()
     *(str_heap_allocated+3) = '\0'; 
 
     // memoria alocada na stack 
-    char str[] = "GfG";  /* Stored in stack segment like other auto variables */
+    char str10[] = "GfG";  /* Stored in stack segment like other auto variables */
     *(str+1) = 'n';   /* No problem: String is now GnG */
 
-
+        int result = strcmp(str_heap_allocated, str10);
 }

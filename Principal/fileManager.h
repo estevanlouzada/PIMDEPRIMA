@@ -2,6 +2,8 @@
 #define HEADER_FILE_NAME
 
 #include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
 
 struct fileManage
 {
@@ -132,14 +134,23 @@ void OpenFileAndRead(FILE *fptr)
     int n = idx;
     for(int i = 0; i < n; i++){
         printf("%d - %s \n", i, *(dictionary+i));
-        if(i % 2 == 0)
+        if(i == 0)
         {
-           // comparar a string com o nome 
+           // comparar a string com o nome
+           char nome[]  = "estevan"; 
+           char *replicaword;
+           replicaword = *(dictionary+i);
+
+           if( strcmp(replicaword, nome) == 0)
+           {
+               printf("entrou");
+           };
         }
     }
 
    fclose(fptr);
 }
+// read file 
 
 void OpenWriteOverrrideAndCreateFile(FILE *fptr)
 {
